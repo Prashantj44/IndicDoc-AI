@@ -884,34 +884,34 @@ with tab_insights:
     ac1, ac2 = st.columns(2)
     with ac1:
         st.markdown("""
-        <div class="about-card">
-            <h4>Faster R-CNN (Baseline)</h4>
-            <table style="width:100%; font-size:0.85rem;">
-                <tr><td><b>Backbone</b></td><td>ResNet-50 + FPN</td></tr>
-                <tr><td><b>Type</b></td><td>Two-stage detector</td></tr>
-                <tr><td><b>Pretrained</b></td><td>COCO (torchvision)</td></tr>
-                <tr><td><b>Parameters</b></td><td>~41.8M</td></tr>
-                <tr><td><b>Optimizer</b></td><td>SGD (lr=0.005, momentum=0.9)</td></tr>
-                <tr><td><b>Scheduler</b></td><td>StepLR (step=3, gamma=0.1)</td></tr>
-                <tr><td><b>Augmentation</b></td><td>HFlip, ColorJitter, Normalize</td></tr>
-            </table>
-        </div>
-        """, unsafe_allow_html=True)
+<div class="about-card">
+    <h4>Faster R-CNN (Baseline)</h4>
+    <table style="width:100%; font-size:0.85rem;">
+        <tr><td><b>Backbone</b></td><td>ResNet-50 + FPN</td></tr>
+        <tr><td><b>Type</b></td><td>Two-stage detector</td></tr>
+        <tr><td><b>Pretrained</b></td><td>COCO (torchvision)</td></tr>
+        <tr><td><b>Parameters</b></td><td>~41.8M</td></tr>
+        <tr><td><b>Optimizer</b></td><td>SGD (lr=0.005, momentum=0.9)</td></tr>
+        <tr><td><b>Scheduler</b></td><td>StepLR (step=3, gamma=0.1)</td></tr>
+        <tr><td><b>Augmentation</b></td><td>HFlip, ColorJitter, Normalize</td></tr>
+    </table>
+</div>
+""", unsafe_allow_html=True)
     with ac2:
         st.markdown("""
-        <div class="about-card">
-            <h4>YOLOv8s (Proposed)</h4>
-            <table style="width:100%; font-size:0.85rem;">
-                <tr><td><b>Backbone</b></td><td>CSPDarknet</td></tr>
-                <tr><td><b>Type</b></td><td>Single-stage detector</td></tr>
-                <tr><td><b>Pretrained</b></td><td>COCO (ultralytics)</td></tr>
-                <tr><td><b>Parameters</b></td><td>~11.2M</td></tr>
-                <tr><td><b>Optimizer</b></td><td>SGD (ultralytics auto)</td></tr>
-                <tr><td><b>Scheduler</b></td><td>Cosine annealing</td></tr>
-                <tr><td><b>Augmentation</b></td><td>Mosaic, MixUp, HSV, Flip</td></tr>
-            </table>
-        </div>
-        """, unsafe_allow_html=True)
+<div class="about-card">
+    <h4>YOLOv8s (Proposed)</h4>
+    <table style="width:100%; font-size:0.85rem;">
+        <tr><td><b>Backbone</b></td><td>CSPDarknet</td></tr>
+        <tr><td><b>Type</b></td><td>Single-stage detector</td></tr>
+        <tr><td><b>Pretrained</b></td><td>COCO (ultralytics)</td></tr>
+        <tr><td><b>Parameters</b></td><td>~11.2M</td></tr>
+        <tr><td><b>Optimizer</b></td><td>SGD (ultralytics auto)</td></tr>
+        <tr><td><b>Scheduler</b></td><td>Cosine annealing</td></tr>
+        <tr><td><b>Augmentation</b></td><td>Mosaic, MixUp, HSV, Flip</td></tr>
+    </table>
+</div>
+""", unsafe_allow_html=True)
 
     # Training curves & visualizations
     plots_dir = PROJECT_ROOT / "outputs" / "plots"
@@ -1006,75 +1006,75 @@ with tab_about:
 
     with ab1:
         st.markdown("""
-        <div class="about-card">
-            <h4>About IndicDoc AI</h4>
-            <p><b>IndicDoc AI</b> is a deep learning system for multilingual Indian document
-            layout understanding. It detects and classifies structural elements &mdash;
-            paragraphs, tables, headers, footers, figures, and more &mdash; from scanned
-            document images across 12 Indian languages.</p>
+<div class="about-card">
+    <h4>About IndicDoc AI</h4>
+    <p><b>IndicDoc AI</b> is a deep learning system for multilingual Indian document
+    layout understanding. It detects and classifies structural elements &mdash;
+    paragraphs, tables, headers, footers, figures, and more &mdash; from scanned
+    document images across 12 Indian languages.</p>
 
-            <h4>Problem Statement</h4>
-            <p>Indian documents exhibit significant diversity in scripts (Devanagari, Tamil, Bengali, etc.),
-            layouts (newspapers, textbooks, forms), and quality (scanned, photographed, degraded).
-            Automated understanding requires robust deep learning models that can handle this diversity.</p>
+    <h4>Problem Statement</h4>
+    <p>Indian documents exhibit significant diversity in scripts (Devanagari, Tamil, Bengali, etc.),
+    layouts (newspapers, textbooks, forms), and quality (scanned, photographed, degraded).
+    Automated understanding requires robust deep learning models that can handle this diversity.</p>
 
-            <h4>Methodology</h4>
-            <ol>
-                <li><b>Dataset:</b> IndicDLP from AIKosh &mdash; 119,806 images, 12 languages, 42 classes</li>
-                <li><b>Baseline:</b> Faster R-CNN with ResNet-50 FPN backbone</li>
-                <li><b>Proposed:</b> YOLOv8s fine-tuned for document layout detection</li>
-                <li><b>Evaluation:</b> mAP, Precision, Recall, F1-Score, IoU</li>
-            </ol>
+    <h4>Methodology</h4>
+    <ol>
+        <li><b>Dataset:</b> IndicDLP from AIKosh &mdash; 119,806 images, 12 languages, 42 classes</li>
+        <li><b>Baseline:</b> Faster R-CNN with ResNet-50 FPN backbone</li>
+        <li><b>Proposed:</b> YOLOv8s fine-tuned for document layout detection</li>
+        <li><b>Evaluation:</b> mAP, Precision, Recall, F1-Score, IoU</li>
+    </ol>
 
-            <h4>Pipeline</h4>
-            <p><code>Document Image &rarr; Preprocessing &rarr; Deep Learning Model &rarr;
-            NMS &rarr; Bounding Boxes + Classes + Confidence &rarr; Visualization</code></p>
+    <h4>Pipeline</h4>
+    <p><code>Document Image &rarr; Preprocessing &rarr; Deep Learning Model &rarr;
+    NMS &rarr; Bounding Boxes + Classes + Confidence &rarr; Visualization</code></p>
 
-            <h4>SDG Alignment</h4>
-            <p><b>SDG 9: Industry, Innovation and Infrastructure</b> &mdash; Enables AI-based
-            document digitization, supports multilingual information processing, and contributes
-            to intelligent document infrastructure for India.</p>
-        </div>
-        """, unsafe_allow_html=True)
+    <h4>SDG Alignment</h4>
+    <p><b>SDG 9: Industry, Innovation and Infrastructure</b> &mdash; Enables AI-based
+    document digitization, supports multilingual information processing, and contributes
+    to intelligent document infrastructure for India.</p>
+</div>
+""", unsafe_allow_html=True)
 
     with ab2:
         st.markdown("""
-        <div class="about-card">
-            <h4>Technology Stack</h4>
-            <ul>
-                <li>Python 3.13</li>
-                <li>PyTorch + torchvision</li>
-                <li>Ultralytics YOLOv8</li>
-                <li>OpenCV</li>
-                <li>Streamlit</li>
-                <li>Albumentations</li>
-                <li>scikit-learn</li>
-                <li>matplotlib + seaborn</li>
-            </ul>
-        </div>
-        """, unsafe_allow_html=True)
+<div class="about-card">
+    <h4>Technology Stack</h4>
+    <ul>
+        <li>Python 3.13</li>
+        <li>PyTorch + torchvision</li>
+        <li>Ultralytics YOLOv8</li>
+        <li>OpenCV</li>
+        <li>Streamlit</li>
+        <li>Albumentations</li>
+        <li>scikit-learn</li>
+        <li>matplotlib + seaborn</li>
+    </ul>
+</div>
+""", unsafe_allow_html=True)
 
         st.markdown("""
-        <div class="about-card">
-            <h4>Links</h4>
-            <ul>
-                <li><a href="https://aikosh.indiaai.gov.in/home" target="_blank">AIKosh Dataset Platform</a></li>
-                <li><a href="https://github.com/Prashantj44/IndicDoc-AI" target="_blank">GitHub Repository</a></li>
-            </ul>
-        </div>
-        """, unsafe_allow_html=True)
+<div class="about-card">
+    <h4>Links</h4>
+    <ul>
+        <li><a href="https://aikosh.indiaai.gov.in/home" target="_blank">AIKosh Dataset Platform</a></li>
+        <li><a href="https://github.com/Prashantj44/IndicDoc-AI" target="_blank">GitHub Repository</a></li>
+    </ul>
+</div>
+""", unsafe_allow_html=True)
 
         st.markdown("""
-        <div class="about-card">
-            <h4>Project Info</h4>
-            <table style="width:100%; font-size:0.85rem;">
-                <tr><td><b>Type</b></td><td>B.E. AI&ML Mini-Project</td></tr>
-                <tr><td><b>Domain</b></td><td>Computer Vision / DL</td></tr>
-                <tr><td><b>SDG</b></td><td>9 &mdash; Industry & Innovation</td></tr>
-                <tr><td><b>Dataset</b></td><td>IndicDLP (AIKosh)</td></tr>
-            </table>
-        </div>
-        """, unsafe_allow_html=True)
+<div class="about-card">
+    <h4>Project Info</h4>
+    <table style="width:100%; font-size:0.85rem;">
+        <tr><td><b>Type</b></td><td>B.E. AI&ML Mini-Project</td></tr>
+        <tr><td><b>Domain</b></td><td>Computer Vision / DL</td></tr>
+        <tr><td><b>SDG</b></td><td>9 &mdash; Industry & Innovation</td></tr>
+        <tr><td><b>Dataset</b></td><td>IndicDLP (AIKosh)</td></tr>
+    </table>
+</div>
+""", unsafe_allow_html=True)
 
 
 # ══════════════════════════════════════════════════════════════
