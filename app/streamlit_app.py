@@ -38,109 +38,84 @@ st.set_page_config(
 
 INDIC_CSS = """
 <style>
-/* ─────── Google Fonts ─────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
+/* ─────── Imports & Base ─────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap');
 
-/* ─────── CSS Custom Properties (Design Tokens) ─────── */
 :root {
-    --indigo: #1E2A5A;
-    --indigo-light: #2a3d7a;
-    --gold: #C89B3C;
-    --gold-muted: #d4ad5a;
-    --ivory: #F7F3EA;
-    --ivory-warm: #FBF8F1;
-    --terracotta: #8B4A3A;
-    --terracotta-light: #a05e4e;
-    --ink-dark: #111827;
-    --ink-medium: #1f2937;
-    --text-primary: #1a1a2e;
-    --text-secondary: #4a4a6a;
-    --text-muted: #7a7a9a;
-    --border-subtle: rgba(30,42,90,0.08);
-    --shadow-soft: 0 2px 12px rgba(30,42,90,0.06);
-    --shadow-card: 0 4px 20px rgba(30,42,90,0.08);
+    /* Premium SaaS Light Theme */
+    --bg-main: #F8FAFC; /* Very light cool gray */
+    --bg-card: #FFFFFF;
+    --text-main: #0F172A;
+    --text-muted: #64748B;
+    --primary: #2563EB;
+    --primary-light: #3B82F6;
+    --accent: #F59E0B;
+    --border: #E2E8F0;
     --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --transition-fast: 0.2s cubic-bezier(0.4,0,0.2,1);
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ─────── Global Overrides ─────── */
+/* Global overides */
 .stApp {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    background-color: var(--ivory) !important;
+    background-color: var(--bg-main) !important;
+    font-family: 'Inter', sans-serif !important;
+    color: var(--text-main);
+}
+/* Hide default stHeader to make it look cleaner */
+header[data-testid="stHeader"] {
+    background: transparent !important;
 }
 
-/* ─────── Sidebar ─────── */
-section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, var(--indigo) 0%, #152047 100%) !important;
-    border-right: 1px solid rgba(200,155,60,0.2);
+/* ─────── Header & Hero ─────── */
+.hero-container {
+    text-align: center;
+    padding: 3rem 1rem 2rem 1rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255,255,255,0.8);
 }
-section[data-testid="stSidebar"] * {
-    color: #e8e4d9 !important;
-}
-section[data-testid="stSidebar"] .stSelectbox label,
-section[data-testid="stSidebar"] .stSlider label {
-    color: var(--gold-muted) !important;
-    font-weight: 600 !important;
-    font-size: 0.82rem !important;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-/* ─────── Headers ─────── */
 .hero-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 2.6rem;
-    font-weight: 700;
-    color: var(--indigo);
-    text-align: center;
-    margin: 0;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    font-family: 'Outfit', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.2rem;
+    color: var(--text-main);
 }
-.hero-title .gold { color: var(--gold); }
-
+.hero-title span {
+    background: linear-gradient(135deg, var(--primary) 0%, #8B5CF6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 .hero-subtitle {
-    font-family: 'Inter', sans-serif;
     font-size: 1.05rem;
+    color: var(--text-muted);
     font-weight: 400;
-    color: var(--text-secondary);
-    text-align: center;
-    margin: 0.4rem 0 1.2rem;
     letter-spacing: 0.01em;
 }
-
-.section-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.45rem;
-    font-weight: 600;
-    color: var(--indigo);
-    margin: 1.5rem 0 0.8rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 2px solid var(--gold);
-    display: inline-block;
-}
-
-/* ─────── Decorative Divider ─────── */
-.indic-divider {
-    text-align: center;
-    margin: 0.6rem 0 1.2rem;
-    color: var(--gold);
-    font-size: 1.1rem;
-    letter-spacing: 0.4em;
-    opacity: 0.6;
+.hero-divider {
+    display: none; /* Removed for a cleaner look */
 }
 
 /* ─────── Metric Cards ─────── */
 .metric-card {
-    background: white;
-    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    padding: 1.1rem 1rem;
+    padding: 1.5rem;
     text-align: center;
-    box-shadow: var(--shadow-soft);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     position: relative;
     overflow: hidden;
 }
@@ -148,258 +123,228 @@ section[data-testid="stSidebar"] .stSlider label {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--indigo), var(--gold));
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), #8B5CF6);
+    opacity: 0;
+    transition: opacity var(--transition);
 }
 .metric-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-card);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(37, 99, 235, 0.2);
+}
+.metric-card:hover::before {
+    opacity: 1;
 }
 .metric-value {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: var(--indigo);
-    line-height: 1.2;
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
 }
 .metric-label {
-    font-size: 0.78rem;
-    font-weight: 500;
+    font-size: 0.75rem;
+    font-weight: 600;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-top: 0.2rem;
+    letter-spacing: 0.08em;
 }
 
-/* ─────── Info Badges ─────── */
-.lang-badge {
-    display: inline-block;
-    background: rgba(200,155,60,0.12);
-    color: var(--gold);
-    border: 1px solid rgba(200,155,60,0.25);
-    padding: 3px 12px;
-    border-radius: 20px;
-    font-size: 0.78rem;
-    font-weight: 500;
-    margin: 3px;
-    transition: background var(--transition-fast);
+/* ─────── Section Titles ─────── */
+.section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 2rem 0 1.25rem 0;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
 }
-.lang-badge:hover {
-    background: rgba(200,155,60,0.22);
-}
-
-/* ─────── Result Box ─────── */
-.result-panel {
-    background: white;
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    padding: 1.2rem;
-    box-shadow: var(--shadow-soft);
-}
-
-/* ─────── Detection Table ─────── */
-.detection-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.85rem;
-}
-.detection-table th {
-    background: var(--indigo);
-    color: white;
-    padding: 8px 12px;
-    text-align: left;
-    font-weight: 600;
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-}
-.detection-table td {
-    padding: 7px 12px;
-    border-bottom: 1px solid var(--border-subtle);
-    color: var(--text-primary);
-}
-.detection-table tr:hover td {
-    background: rgba(200,155,60,0.05);
-}
-
-/* ─────── Buttons ─────── */
-.stButton>button {
-    border-radius: var(--radius-sm) !important;
-    font-weight: 600 !important;
-    font-family: 'Inter', sans-serif !important;
-    transition: all var(--transition-fast) !important;
-}
-.stButton>button[kind="primary"],
-.stButton>button[data-testid="stBaseButton-primary"] {
-    background: var(--indigo) !important;
-    border: none !important;
-    color: white !important;
-}
-.stButton>button[kind="primary"]:hover,
-.stButton>button[data-testid="stBaseButton-primary"]:hover {
-    background: var(--indigo-light) !important;
-    box-shadow: 0 4px 14px rgba(30,42,90,0.25) !important;
-}
-
-/* ─────── Tabs ─────── */
-.stTabs [data-baseweb="tab-list"] {
-    gap: 0;
-    border-bottom: 2px solid var(--border-subtle);
-}
-.stTabs [data-baseweb="tab"] {
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    color: var(--text-muted);
-    padding: 0.6rem 1.2rem;
-    border-bottom: 3px solid transparent;
-    transition: all var(--transition-fast);
-}
-.stTabs [data-baseweb="tab"]:hover {
-    color: var(--indigo);
-}
-.stTabs [aria-selected="true"] {
-    color: var(--indigo) !important;
-    border-bottom-color: var(--gold) !important;
-    font-weight: 600;
-}
-
-/* ─────── File Uploader ─────── */
-.stFileUploader {
-    border: 2px dashed rgba(30,42,90,0.15) !important;
-    border-radius: var(--radius-md) !important;
-    background: rgba(247,243,234,0.5) !important;
-    transition: border-color var(--transition-fast);
-}
-.stFileUploader:hover {
-    border-color: var(--gold) !important;
-}
-
-/* ─────── Warning / Info boxes ─────── */
-.demo-banner {
-    background: linear-gradient(135deg, rgba(200,155,60,0.08), rgba(139,74,58,0.06));
-    border-left: 4px solid var(--gold);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    padding: 0.8rem 1rem;
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    margin: 0.5rem 0;
-}
-
-/* ─────── Footer ─────── */
-.app-footer {
-    text-align: center;
-    padding: 1.5rem 0 1rem;
-    color: var(--text-muted);
-    font-size: 0.78rem;
-    border-top: 1px solid var(--border-subtle);
-    margin-top: 2rem;
-}
-.app-footer .gold { color: var(--gold); }
-
-/* ─────── Comparison Table ─────── */
-.comparison-header {
-    background: var(--indigo);
-    color: white;
-    padding: 0.6rem 1rem;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-/* ─────── About Card ─────── */
-.about-card {
-    background: white;
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-soft);
-    margin-bottom: 1rem;
-}
-.about-card h4 {
-    color: var(--indigo);
-    font-family: 'Playfair Display', serif;
-    margin-bottom: 0.5rem;
-}
-
-/* ─────── Sidebar Footer ─────── */
-.sidebar-footer {
-    text-align: center;
-    font-size: 0.72rem;
-    color: rgba(232,228,217,0.5);
-    padding: 1rem 0;
-    border-top: 1px solid rgba(200,155,60,0.15);
-    margin-top: 1rem;
+.section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-left: 1rem;
 }
 
 /* ─────── Custom HTML Tables ─────── */
 .custom-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin: 1rem 0;
     font-family: 'Inter', sans-serif;
+    background: var(--bg-card);
     border-radius: var(--radius-sm);
     overflow: hidden;
-    box-shadow: var(--shadow-soft);
-    background: white;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
 }
 .custom-table th {
-    background: var(--indigo);
-    color: white;
+    background: #F8FAFC;
+    color: var(--text-muted);
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     letter-spacing: 0.05em;
-    padding: 12px 15px;
+    padding: 14px 16px;
     text-align: left;
+    border-bottom: 1px solid var(--border);
 }
 .custom-table td {
-    padding: 10px 15px;
-    border-bottom: 1px solid var(--border-subtle);
-    color: var(--text-primary);
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-main);
     font-size: 0.9rem;
 }
 .custom-table tbody tr:last-of-type td {
     border-bottom: none;
 }
 .custom-table tbody tr:hover {
-    background-color: rgba(200, 155, 60, 0.04);
+    background-color: #F8FAFC;
 }
 
 /* ─────── Empty States ─────── */
 .empty-state {
     text-align: center;
-    padding: 4rem 2rem;
-    background: white;
-    border: 2px dashed rgba(30, 42, 90, 0.15);
+    padding: 5rem 2rem;
+    background: var(--bg-card);
+    border: 1.5px dashed var(--border);
     border-radius: var(--radius-md);
     color: var(--text-muted);
-    transition: all var(--transition-fast);
+    transition: all var(--transition);
 }
 .empty-state:hover {
-    border-color: rgba(200, 155, 60, 0.4);
-    background: rgba(251, 248, 241, 0.5);
+    border-color: var(--primary-light);
+    background: #EFF6FF;
 }
 .empty-icon {
     font-size: 3.5rem;
     margin-bottom: 1rem;
-    opacity: 0.8;
+    opacity: 0.7;
+    filter: grayscale(100%);
+    transition: filter var(--transition);
+}
+.empty-state:hover .empty-icon {
+    filter: grayscale(0%);
 }
 .empty-title {
-    font-size: 1.2rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
     font-weight: 600;
-    color: var(--indigo);
+    color: var(--text-main);
     margin-bottom: 0.5rem;
 }
 .empty-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.5;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* ─────── Panels & Cards ─────── */
+.result-panel, .about-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1rem;
+    transition: box-shadow var(--transition);
+}
+.result-panel:hover, .about-card:hover {
+    box-shadow: var(--shadow-md);
+}
+.about-card h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-top: 0;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+/* ─────── Demo Banner ─────── */
+.demo-banner {
+    background: #FEF2F2;
+    color: #991B1B;
+    border: 1px solid #FCA5A5;
+    padding: 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* ─────── Sidebar Customization ─────── */
+[data-testid="stSidebar"] {
+    background-color: #0F172A !important;
+    border-right: 1px solid #1E293B !important;
+}
+[data-testid="stSidebar"] * {
+    color: #F8FAFC !important;
+}
+[data-testid="stSidebar"] .stSelectbox label, 
+[data-testid="stSidebar"] .stSlider label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600 !important;
+    font-size: 0.75rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94A3B8 !important;
+}
+.sidebar-footer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #64748B;
+    padding: 1.5rem 0;
+    border-top: 1px solid #1E293B;
+    margin-top: 2rem;
+}
+
+/* ─────── Footer ─────── */
+.app-footer {
+    text-align: center;
+    padding: 3rem 1rem;
+    margin-top: 3rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+}
+
+/* ─────── Tabs Customization ─────── */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 24px;
+    background-color: transparent;
+}
+.stTabs [data-baseweb="tab"] {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: var(--text-muted);
+}
+.stTabs [aria-selected="true"] {
+    color: var(--primary) !important;
+}
+.stTabs [data-baseweb="tab-highlight"] {
+    background-color: var(--primary);
 }
 
 /* ─────── Responsive ─────── */
 @media (max-width: 768px) {
-    .hero-title { font-size: 1.8rem; }
-    .hero-subtitle { font-size: 0.9rem; }
-    .metric-value { font-size: 1.3rem; }
+    .hero-title { font-size: 2.5rem; }
+    .hero-subtitle { font-size: 0.95rem; }
+    .metric-value { font-size: 1.8rem; }
+    .section-title::after { display: none; }
 }
 </style>
 """
