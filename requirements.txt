@@ -1,0 +1,17 @@
+torch
+torchvision
+opencv-python-headless
+numpy
+pandas
+Pillow
+matplotlib
+seaborn
+scikit-learn
+pycocotools
+streamlit
+ultralytics
+albumentations
+tqdm
+mlflow
+onnxruntime
+pytest

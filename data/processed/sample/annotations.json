@@ -1,0 +1,800 @@
+{
+    "info": {
+        "description": "Synthetic Sample Dataset for IndicDoc Pipeline Testing",
+        "version": "1.0",
+        "year": 2024
+    },
+    "licenses": [],
+    "images": [
+        {
+            "id": 1,
+            "width": 800,
+            "height": 1000,
+            "file_name": "sample_0001.jpg"
+        },
+        {
+            "id": 2,
+            "width": 800,
+            "height": 1000,
+            "file_name": "sample_0002.jpg"
+        },
+        {
+            "id": 3,
+            "width": 800,
+            "height": 1000,
+            "file_name": "sample_0003.jpg"
+        },
+        {
+            "id": 4,
+            "width": 800,
+            "height": 1000,
+            "file_name": "sample_0004.jpg"
+        },
+        {
+            "id": 5,
+            "width": 800,
+            "height": 1000,
+            "file_name": "sample_0005.jpg"
+        }
+    ],
+    "annotations": [
+        {
+            "id": 1,
+            "image_id": 1,
+            "category_id": 22,
+            "bbox": [
+                129,
+                680,
+                95,
+                90
+            ],
+            "area": 8550,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 2,
+            "image_id": 1,
+            "category_id": 14,
+            "bbox": [
+                178,
+                361,
+                74,
+                66
+            ],
+            "area": 4884,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 3,
+            "image_id": 1,
+            "category_id": 25,
+            "bbox": [
+                481,
+                280,
+                150,
+                24
+            ],
+            "area": 3600,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 4,
+            "image_id": 1,
+            "category_id": 27,
+            "bbox": [
+                382,
+                800,
+                57,
+                77
+            ],
+            "area": 4389,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 5,
+            "image_id": 1,
+            "category_id": 35,
+            "bbox": [
+                100,
+                564,
+                116,
+                50
+            ],
+            "area": 5800,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 6,
+            "image_id": 1,
+            "category_id": 12,
+            "bbox": [
+                495,
+                496,
+                90,
+                31
+            ],
+            "area": 2790,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 7,
+            "image_id": 1,
+            "category_id": 38,
+            "bbox": [
+                408,
+                239,
+                141,
+                70
+            ],
+            "area": 9870,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 8,
+            "image_id": 1,
+            "category_id": 29,
+            "bbox": [
+                203,
+                763,
+                129,
+                56
+            ],
+            "area": 7224,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 9,
+            "image_id": 1,
+            "category_id": 34,
+            "bbox": [
+                298,
+                505,
+                75,
+                20
+            ],
+            "area": 1500,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 10,
+            "image_id": 1,
+            "category_id": 16,
+            "bbox": [
+                382,
+                101,
+                126,
+                87
+            ],
+            "area": 10962,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 11,
+            "image_id": 2,
+            "category_id": 25,
+            "bbox": [
+                593,
+                541,
+                106,
+                75
+            ],
+            "area": 7950,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 12,
+            "image_id": 2,
+            "category_id": 14,
+            "bbox": [
+                468,
+                314,
+                107,
+                75
+            ],
+            "area": 8025,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 13,
+            "image_id": 2,
+            "category_id": 7,
+            "bbox": [
+                133,
+                773,
+                111,
+                64
+            ],
+            "area": 7104,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 14,
+            "image_id": 2,
+            "category_id": 12,
+            "bbox": [
+                388,
+                750,
+                96,
+                89
+            ],
+            "area": 8544,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 15,
+            "image_id": 2,
+            "category_id": 20,
+            "bbox": [
+                243,
+                391,
+                90,
+                37
+            ],
+            "area": 3330,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 16,
+            "image_id": 2,
+            "category_id": 1,
+            "bbox": [
+                489,
+                513,
+                118,
+                43
+            ],
+            "area": 5074,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 17,
+            "image_id": 2,
+            "category_id": 13,
+            "bbox": [
+                274,
+                411,
+                106,
+                81
+            ],
+            "area": 8586,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 18,
+            "image_id": 2,
+            "category_id": 25,
+            "bbox": [
+                249,
+                220,
+                146,
+                39
+            ],
+            "area": 5694,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 19,
+            "image_id": 3,
+            "category_id": 9,
+            "bbox": [
+                478,
+                650,
+                77,
+                47
+            ],
+            "area": 3619,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 20,
+            "image_id": 3,
+            "category_id": 4,
+            "bbox": [
+                292,
+                326,
+                74,
+                67
+            ],
+            "area": 4958,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 21,
+            "image_id": 3,
+            "category_id": 31,
+            "bbox": [
+                399,
+                761,
+                97,
+                75
+            ],
+            "area": 7275,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 22,
+            "image_id": 3,
+            "category_id": 23,
+            "bbox": [
+                372,
+                348,
+                76,
+                47
+            ],
+            "area": 3572,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 23,
+            "image_id": 3,
+            "category_id": 20,
+            "bbox": [
+                593,
+                313,
+                122,
+                48
+            ],
+            "area": 5856,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 24,
+            "image_id": 4,
+            "category_id": 29,
+            "bbox": [
+                321,
+                772,
+                79,
+                57
+            ],
+            "area": 4503,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 25,
+            "image_id": 4,
+            "category_id": 15,
+            "bbox": [
+                257,
+                640,
+                70,
+                23
+            ],
+            "area": 1610,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 26,
+            "image_id": 4,
+            "category_id": 38,
+            "bbox": [
+                65,
+                52,
+                92,
+                38
+            ],
+            "area": 3496,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 27,
+            "image_id": 4,
+            "category_id": 20,
+            "bbox": [
+                552,
+                507,
+                128,
+                53
+            ],
+            "area": 6784,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 28,
+            "image_id": 4,
+            "category_id": 32,
+            "bbox": [
+                187,
+                797,
+                58,
+                34
+            ],
+            "area": 1972,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 29,
+            "image_id": 4,
+            "category_id": 37,
+            "bbox": [
+                481,
+                287,
+                129,
+                36
+            ],
+            "area": 4644,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 30,
+            "image_id": 4,
+            "category_id": 11,
+            "bbox": [
+                412,
+                218,
+                104,
+                64
+            ],
+            "area": 6656,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 31,
+            "image_id": 4,
+            "category_id": 32,
+            "bbox": [
+                278,
+                235,
+                114,
+                50
+            ],
+            "area": 5700,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 32,
+            "image_id": 4,
+            "category_id": 32,
+            "bbox": [
+                368,
+                415,
+                116,
+                71
+            ],
+            "area": 8236,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 33,
+            "image_id": 5,
+            "category_id": 8,
+            "bbox": [
+                405,
+                70,
+                128,
+                55
+            ],
+            "area": 7040,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 34,
+            "image_id": 5,
+            "category_id": 23,
+            "bbox": [
+                263,
+                351,
+                126,
+                72
+            ],
+            "area": 9072,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 35,
+            "image_id": 5,
+            "category_id": 3,
+            "bbox": [
+                529,
+                606,
+                117,
+                57
+            ],
+            "area": 6669,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 36,
+            "image_id": 5,
+            "category_id": 6,
+            "bbox": [
+                211,
+                510,
+                140,
+                63
+            ],
+            "area": 8820,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 37,
+            "image_id": 5,
+            "category_id": 36,
+            "bbox": [
+                99,
+                766,
+                100,
+                24
+            ],
+            "area": 2400,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 38,
+            "image_id": 5,
+            "category_id": 20,
+            "bbox": [
+                178,
+                664,
+                120,
+                51
+            ],
+            "area": 6120,
+            "iscrowd": 0,
+            "segmentation": []
+        },
+        {
+            "id": 39,
+            "image_id": 5,
+            "category_id": 22,
+            "bbox": [
+                442,
+                720,
+                103,
+                47
+            ],
+            "area": 4841,
+            "iscrowd": 0,
+            "segmentation": []
+        }
+    ],
+    "categories": [
+        {
+            "id": 0,
+            "name": "Paragraph",
+            "supercategory": "document"
+        },
+        {
+            "id": 1,
+            "name": "Image",
+            "supercategory": "document"
+        },
+        {
+            "id": 2,
+            "name": "Table",
+            "supercategory": "document"
+        },
+        {
+            "id": 3,
+            "name": "Header",
+            "supercategory": "document"
+        },
+        {
+            "id": 4,
+            "name": "Footer",
+            "supercategory": "document"
+        },
+        {
+            "id": 5,
+            "name": "Title",
+            "supercategory": "document"
+        },
+        {
+            "id": 6,
+            "name": "Caption",
+            "supercategory": "document"
+        },
+        {
+            "id": 7,
+            "name": "Page Number",
+            "supercategory": "document"
+        },
+        {
+            "id": 8,
+            "name": "Footnote",
+            "supercategory": "document"
+        },
+        {
+            "id": 9,
+            "name": "List",
+            "supercategory": "document"
+        },
+        {
+            "id": 10,
+            "name": "Figure",
+            "supercategory": "document"
+        },
+        {
+            "id": 11,
+            "name": "Equation",
+            "supercategory": "document"
+        },
+        {
+            "id": 12,
+            "name": "Logo",
+            "supercategory": "document"
+        },
+        {
+            "id": 13,
+            "name": "Stamp",
+            "supercategory": "document"
+        },
+        {
+            "id": 14,
+            "name": "Signature",
+            "supercategory": "document"
+        },
+        {
+            "id": 15,
+            "name": "Handwriting",
+            "supercategory": "document"
+        },
+        {
+            "id": 16,
+            "name": "Chart",
+            "supercategory": "document"
+        },
+        {
+            "id": 17,
+            "name": "Map",
+            "supercategory": "document"
+        },
+        {
+            "id": 18,
+            "name": "Separator",
+            "supercategory": "document"
+        },
+        {
+            "id": 19,
+            "name": "Advertisement",
+            "supercategory": "document"
+        },
+        {
+            "id": 20,
+            "name": "Watermark",
+            "supercategory": "document"
+        },
+        {
+            "id": 21,
+            "name": "Background",
+            "supercategory": "document"
+        },
+        {
+            "id": 22,
+            "name": "Margin Note",
+            "supercategory": "document"
+        },
+        {
+            "id": 23,
+            "name": "Column",
+            "supercategory": "document"
+        },
+        {
+            "id": 24,
+            "name": "Section Header",
+            "supercategory": "document"
+        },
+        {
+            "id": 25,
+            "name": "Sub Header",
+            "supercategory": "document"
+        },
+        {
+            "id": 26,
+            "name": "Abstract",
+            "supercategory": "document"
+        },
+        {
+            "id": 27,
+            "name": "Author",
+            "supercategory": "document"
+        },
+        {
+            "id": 28,
+            "name": "Affiliation",
+            "supercategory": "document"
+        },
+        {
+            "id": 29,
+            "name": "Date",
+            "supercategory": "document"
+        },
+        {
+            "id": 30,
+            "name": "Reference",
+            "supercategory": "document"
+        },
+        {
+            "id": 31,
+            "name": "Acknowledgment",
+            "supercategory": "document"
+        },
+        {
+            "id": 32,
+            "name": "Appendix",
+            "supercategory": "document"
+        },
+        {
+            "id": 33,
+            "name": "Table of Contents",
+            "supercategory": "document"
+        },
+        {
+            "id": 34,
+            "name": "Index",
+            "supercategory": "document"
+        },
+        {
+            "id": 35,
+            "name": "Glossary",
+            "supercategory": "document"
+        },
+        {
+            "id": 36,
+            "name": "Bibliography",
+            "supercategory": "document"
+        },
+        {
+            "id": 37,
+            "name": "Preface",
+            "supercategory": "document"
+        },
+        {
+            "id": 38,
+            "name": "Dedication",
+            "supercategory": "document"
+        },
+        {
+            "id": 39,
+            "name": "Colophon",
+            "supercategory": "document"
+        },
+        {
+            "id": 40,
+            "name": "Running Header",
+            "supercategory": "document"
+        },
+        {
+            "id": 41,
+            "name": "Running Footer",
+            "supercategory": "document"
+        }
+    ]
+}
