@@ -22,6 +22,11 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg-main);
   color: var(--text-main);
+  
+  /* Layered background with subtle atmospheric shapes */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(200, 155, 60, 0.03), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(30, 42, 90, 0.03), transparent 25%);
 }
 
 .app-container {
@@ -29,9 +34,13 @@ body {
   min-height: 100vh;
 }
 
+/* Glass Sidebar */
 .sidebar {
   width: 250px;
-  background-color: var(--primary);
+  background: rgba(30, 42, 90, 0.92); /* Translucent Deep Indigo */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
   color: #F8FAFC;
   padding: 2rem 1.5rem;
   display: flex;
@@ -59,10 +68,14 @@ body {
   border-radius: var(--radius-sm);
   transition: all var(--transition);
   font-weight: 500;
+  /* Subtle glass highlight */
+  background: rgba(255, 255, 255, 0.0);
 }
 
 .nav-link:hover, .nav-link.active {
-  background-color: rgba(200, 155, 60, 0.15);
+  background: rgba(200, 155, 60, 0.15);
+  backdrop-filter: blur(4px);
+  border-left: 3px solid var(--accent);
   color: var(--accent);
 }
 
@@ -101,14 +114,23 @@ body {
   margin-top: 2rem;
 }
 
+/* Glass Metric Cards */
 .metric-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-top: 3px solid var(--accent);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(30, 42, 90, 0.08);
+  border-top: 3px solid rgba(200, 155, 60, 0.8);
   border-radius: var(--radius-md);
   padding: 1.5rem;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 20px rgba(30, 42, 90, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(30, 42, 90, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
 }
 
 .metric-card h3 {
