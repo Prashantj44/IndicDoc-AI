@@ -66,10 +66,21 @@ INDIC_CSS = """
     font-family: 'Inter', sans-serif !important;
     color: var(--text-main);
 }
-/* Hide default stHeader to make it look cleaner */
+
+/* Hide default stHeader, Deploy button, and MainMenu to make it look cleaner */
 header[data-testid="stHeader"] {
-    background: transparent !important;
+    display: none !important;
 }
+[data-testid="stToolbar"] {
+    display: none !important;
+}
+#MainMenu {
+    display: none !important;
+}
+footer {
+    display: none !important;
+}
+
 
 /* ─────── Header & Hero ─────── */
 .hero-container {
