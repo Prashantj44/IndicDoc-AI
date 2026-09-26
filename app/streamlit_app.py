@@ -331,6 +331,70 @@ section[data-testid="stSidebar"] .stSlider label {
     margin-top: 1rem;
 }
 
+/* ─────── Custom HTML Tables ─────── */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    background: white;
+}
+.custom-table th {
+    background: var(--indigo);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    padding: 12px 15px;
+    text-align: left;
+}
+.custom-table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+.custom-table tbody tr:last-of-type td {
+    border-bottom: none;
+}
+.custom-table tbody tr:hover {
+    background-color: rgba(200, 155, 60, 0.04);
+}
+
+/* ─────── Empty States ─────── */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border: 2px dashed rgba(30, 42, 90, 0.15);
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    transition: all var(--transition-fast);
+}
+.empty-state:hover {
+    border-color: rgba(200, 155, 60, 0.4);
+    background: rgba(251, 248, 241, 0.5);
+}
+.empty-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+.empty-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--indigo);
+    margin-bottom: 0.5rem;
+}
+.empty-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
 /* ─────── Responsive ─────── */
 @media (max-width: 768px) {
     .hero-title { font-size: 1.8rem; }
@@ -483,6 +547,20 @@ def metric_card_html(value, label, icon=""):
     """
 
 
+def generate_html_table(headers, rows):
+    header_html = "".join([f"<th>{h}</th>" for h in headers])
+    rows_html = ""
+    for row in rows:
+        row_html = "".join([f"<td>{str(cell)}</td>" for cell in row])
+        rows_html += f"<tr>{row_html}</tr>"
+    return f"""
+    <table class="custom-table">
+        <thead><tr>{header_html}</tr></thead>
+        <tbody>{rows_html}</tbody>
+    </table>
+    """
+
+
 # ══════════════════════════════════════════════════════════════
 #  SIDEBAR
 # ══════════════════════════════════════════════════════════════
@@ -593,42 +671,32 @@ with tab_dash:
     with col_left:
         st.markdown('<div class="section-title">Model Status</div>', unsafe_allow_html=True)
 
-        model_info = {
-            "Property": ["Current Model", "Architecture", "Dataset", "Classes", "Image Size", "Status"],
-            "Baseline (Faster R-CNN)": [
-                "Faster R-CNN",
-                "ResNet-50 + FPN",
-                "IndicDLP (Sample)",
-                "42 classes + background",
-                "640 x 640",
-                "Trained" if (PROJECT_ROOT / "outputs" / "models" / "baseline_frcnn_best.pth").exists() else "Not trained",
-            ],
-            "Proposed (YOLOv8)": [
-                "YOLOv8s",
-                "CSPDarknet",
-                "IndicDLP (Sample)",
-                "42 classes",
-                "640 x 640",
-                "Trained" if (PROJECT_ROOT / "outputs" / "models" / "yolov8_best.pt").exists() else "Not trained",
-            ],
-        }
-        st.dataframe(model_info, use_container_width=True, hide_index=True)
+        headers = ["Property", "Baseline (Faster R-CNN)", "Proposed (YOLOv8)"]
+        rows = [
+            ["Current Model", "Faster R-CNN", "YOLOv8s"],
+            ["Architecture", "ResNet-50 + FPN", "CSPDarknet"],
+            ["Dataset", "IndicDLP (Sample)", "IndicDLP (Sample)"],
+            ["Classes", "42 classes + background", "42 classes"],
+            ["Image Size", "640 x 640", "640 x 640"],
+            ["Status", 
+             "Trained" if (PROJECT_ROOT / "outputs" / "models" / "baseline_frcnn_best.pth").exists() else "Not trained",
+             "Trained" if (PROJECT_ROOT / "outputs" / "models" / "yolov8_best.pt").exists() else "Not trained"]
+        ]
+        st.markdown(generate_html_table(headers, rows), unsafe_allow_html=True)
 
     with col_right:
         st.markdown('<div class="section-title">Latest Evaluation</div>', unsafe_allow_html=True)
 
         if baseline_m:
-            eval_data = {
-                "Metric": ["Precision", "Recall", "F1", "mAP@50", "Avg IoU"],
-                "Value": [
-                    baseline_m.get("precision", "N/A"),
-                    baseline_m.get("recall", "N/A"),
-                    baseline_m.get("f1", "N/A"),
-                    baseline_m.get("map50", "N/A"),
-                    baseline_m.get("avg_iou", "N/A"),
-                ],
-            }
-            st.dataframe(eval_data, use_container_width=True, hide_index=True)
+            headers = ["Metric", "Value"]
+            rows = [
+                ["Precision", baseline_m.get("precision", "N/A")],
+                ["Recall", baseline_m.get("recall", "N/A")],
+                ["F1", baseline_m.get("f1", "N/A")],
+                ["mAP@50", baseline_m.get("map50", "N/A")],
+                ["Avg IoU", baseline_m.get("avg_iou", "N/A")]
+            ]
+            st.markdown(generate_html_table(headers, rows), unsafe_allow_html=True)
             if baseline_m.get("note"):
                 st.caption(baseline_m["note"])
         else:
@@ -654,10 +722,10 @@ with tab_dash:
 #  TAB 2: ANALYZE
 # ══════════════════════════════════════════════════════════════
 with tab_analyze:
-    col_upload, col_view, col_result = st.columns([1, 2, 1])
+    col_left, col_right = st.columns([1, 2.8])
 
-    with col_upload:
-        st.markdown('<div class="section-title">Upload</div>', unsafe_allow_html=True)
+    with col_left:
+        st.markdown('<div class="section-title">Upload & Analyze</div>', unsafe_allow_html=True)
         uploaded_file = st.file_uploader(
             "Choose a document image or PDF",
             type=["png", "jpg", "jpeg", "tiff", "bmp", "pdf"],
@@ -709,7 +777,43 @@ with tab_analyze:
             run_btn = False
             reset_btn = False
 
-    with col_view:
+        st.markdown('<div class="section-title" style="margin-top: 2rem;">Analysis Results</div>', unsafe_allow_html=True)
+        results = st.session_state.get("last_results")
+
+        if results and uploaded_file is not None:
+            n_det = len(results.get("boxes", []))
+            avg_conf = float(np.mean(results["scores"])) if n_det > 0 else 0.0
+            inf_time = results.get("inference_time", 0)
+
+            st.markdown(metric_card_html(str(n_det), "Elements Detected"), unsafe_allow_html=True)
+            st.markdown(metric_card_html(f"{avg_conf:.2f}", "Avg Confidence"), unsafe_allow_html=True)
+            st.markdown(metric_card_html(f"{inf_time:.3f}s", "Inference Time"), unsafe_allow_html=True)
+
+            if n_det > 0:
+                st.markdown("<br>**Detected Elements:**", unsafe_allow_html=True)
+                for i, (box, label, score) in enumerate(zip(results["boxes"], results["labels"], results["scores"])):
+                    if score < conf_threshold:
+                        continue
+                    idx = int(label) if int(label) < len(DEFAULT_CLASSES) else 0
+                    cls = DEFAULT_CLASSES[idx]
+                    st.markdown(f"`{i+1}.` **{cls}** &mdash; {score:.2f}")
+
+            if n_det > 0:
+                annotated_bgr = cv2.cvtColor(
+                    draw_detections(image_rgb.copy(), results["boxes"], results["labels"], results["scores"], DEFAULT_CLASSES, conf_threshold),
+                    cv2.COLOR_RGB2BGR
+                )
+                _, buf = cv2.imencode('.png', annotated_bgr)
+                st.markdown("<br>", unsafe_allow_html=True)
+                st.download_button("Download Image", data=buf.tobytes(), file_name="indicdoc_result.png", mime="image/png", use_container_width=True)
+        else:
+            st.markdown("""
+            <div style="color:var(--text-muted); font-size:0.9rem;">
+                Results will appear here after running analysis.
+            </div>
+            """, unsafe_allow_html=True)
+
+    with col_right:
         st.markdown('<div class="section-title">Document Viewer</div>', unsafe_allow_html=True)
 
         if uploaded_file is not None:
@@ -773,48 +877,10 @@ with tab_analyze:
                 st.image(image_rgb, caption="Original Document", use_container_width=True)
         else:
             st.markdown("""
-            <div class="result-panel" style="text-align:center; padding:4rem 2rem; color:var(--text-muted);">
-                <div style="font-size:3rem; margin-bottom:0.5rem;">&#x1F4C4;</div>
-                <div style="font-size:1.1rem; font-weight:500;">Upload a document image to begin analysis</div>
-                <div style="font-size:0.85rem; margin-top:0.3rem;">Supports PNG, JPG, TIFF, BMP formats</div>
-            </div>
-            """, unsafe_allow_html=True)
-
-    with col_result:
-        st.markdown('<div class="section-title">Analysis</div>', unsafe_allow_html=True)
-        results = st.session_state.get("last_results")
-
-        if results and uploaded_file is not None:
-            n_det = len(results.get("boxes", []))
-            avg_conf = float(np.mean(results["scores"])) if n_det > 0 else 0.0
-            inf_time = results.get("inference_time", 0)
-
-            st.markdown(metric_card_html(str(n_det), "Elements Detected"), unsafe_allow_html=True)
-            st.markdown(metric_card_html(f"{avg_conf:.2f}", "Avg Confidence"), unsafe_allow_html=True)
-            st.markdown(metric_card_html(f"{inf_time:.3f}s", "Inference Time"), unsafe_allow_html=True)
-            st.markdown(metric_card_html(model_choice.split("(")[0].strip(), "Model Used"), unsafe_allow_html=True)
-
-            if n_det > 0:
-                st.markdown("**Detected Elements:**")
-                for i, (box, label, score) in enumerate(zip(results["boxes"], results["labels"], results["scores"])):
-                    if score < conf_threshold:
-                        continue
-                    idx = int(label) if int(label) < len(DEFAULT_CLASSES) else 0
-                    cls = DEFAULT_CLASSES[idx]
-                    st.markdown(f"`{i+1}.` **{cls}** &mdash; {score:.2f}")
-
-            # Download
-            if n_det > 0:
-                annotated_bgr = cv2.cvtColor(
-                    draw_detections(image_rgb.copy(), results["boxes"], results["labels"], results["scores"], DEFAULT_CLASSES, conf_threshold),
-                    cv2.COLOR_RGB2BGR
-                )
-                _, buf = cv2.imencode('.png', annotated_bgr)
-                st.download_button("Download Result", data=buf.tobytes(), file_name="indicdoc_result.png", mime="image/png", use_container_width=True)
-        else:
-            st.markdown("""
-            <div style="text-align:center; color:var(--text-muted); padding:2rem 0;">
-                <p>Results will appear here after analysis.</p>
+            <div class="empty-state">
+                <div class="empty-icon">&#x1F4C4;</div>
+                <div class="empty-title">No Document Selected</div>
+                <div class="empty-subtitle">Upload a document image or PDF from the left panel to begin layout analysis. Supports PNG, JPG, TIFF, BMP, and PDF formats.</div>
             </div>
             """, unsafe_allow_html=True)
 
@@ -835,20 +901,17 @@ with tab_insights:
     pm = saved.get("proposed_metrics", {})
 
     if bm or pm:
-        comp = {
-            "Metric": ["Precision", "Recall", "F1-Score", "mAP@50", "mAP@50:95", "Inference Time (s)", "Model Size (MB)"],
-            "Faster R-CNN (Baseline)": [
-                bm.get("precision", "N/A"), bm.get("recall", "N/A"), bm.get("f1", "N/A"),
-                bm.get("map50", "N/A"), bm.get("map50_95", "N/A"),
-                bm.get("inference_time", "N/A"), bm.get("model_size_mb", "N/A"),
-            ],
-            "YOLOv8 (Proposed)": [
-                pm.get("precision", "N/A"), pm.get("recall", "N/A"), pm.get("f1", "N/A"),
-                pm.get("map50", "N/A"), pm.get("map50_95", "N/A"),
-                pm.get("inference_time", "N/A"), pm.get("model_size_mb", "N/A"),
-            ],
-        }
-        st.dataframe(comp, use_container_width=True, hide_index=True)
+        headers = ["Metric", "Faster R-CNN (Baseline)", "YOLOv8 (Proposed)"]
+        rows = [
+            ["Precision", bm.get("precision", "N/A"), pm.get("precision", "N/A")],
+            ["Recall", bm.get("recall", "N/A"), pm.get("recall", "N/A")],
+            ["F1-Score", bm.get("f1", "N/A"), pm.get("f1", "N/A")],
+            ["mAP@50", bm.get("map50", "N/A"), pm.get("map50", "N/A")],
+            ["mAP@50:95", bm.get("map50_95", "N/A"), pm.get("map50_95", "N/A")],
+            ["Inference Time (s)", bm.get("inference_time", "N/A"), pm.get("inference_time", "N/A")],
+            ["Model Size (MB)", bm.get("model_size_mb", "N/A"), pm.get("model_size_mb", "N/A")]
+        ]
+        st.markdown(generate_html_table(headers, rows), unsafe_allow_html=True)
 
         if bm.get("note"):
             st.caption(f"Baseline: {bm['note']}")
@@ -970,13 +1033,9 @@ with tab_eval:
 
     # Per-language table
     st.markdown('<div class="section-title">Per-Language Evaluation</div>', unsafe_allow_html=True)
-    lang_table = {
-        "Language": languages,
-        "Precision": ["N/A"] * 12,
-        "Recall": ["N/A"] * 12,
-        "F1": ["N/A"] * 12,
-    }
-    st.dataframe(lang_table, use_container_width=True, hide_index=True)
+    headers = ["Language", "Precision", "Recall", "F1"]
+    rows = [[lang, "N/A", "N/A", "N/A"] for lang in languages]
+    st.markdown(generate_html_table(headers, rows), unsafe_allow_html=True)
     st.caption("Per-language evaluation requires language metadata in the annotations. Results will be populated when evaluated on the full IndicDLP dataset with language labels.")
 
 
