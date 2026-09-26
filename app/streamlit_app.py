@@ -341,7 +341,7 @@ footer {
     font-size: 1.05rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    color: var(--text-muted);
+    color: #64748B !important;
 }
 .stTabs [aria-selected="true"] {
     color: var(--primary) !important;
