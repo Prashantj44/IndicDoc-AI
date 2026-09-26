@@ -411,16 +411,33 @@ def run_inference_frcnn(image, model, device, conf_threshold):
     import torch
     from torchvision import transforms as T
     model.eval()
+    
+    # Prevent OOM on massive images by capping max dimension
+    max_dim = 1024
+    h, w = image.shape[:2]
+    if max(h, w) > max_dim:
+        scale = max_dim / max(h, w)
+        image_resized = cv2.resize(image, (int(w * scale), int(h * scale)))
+    else:
+        image_resized = image
+
     transform = T.Compose([T.ToTensor()])
-    img_tensor = transform(cv2.cvtColor(image, cv2.COLOR_BGR2RGB)).to(device)
+    img_tensor = transform(cv2.cvtColor(image_resized, cv2.COLOR_BGR2RGB)).to(device)
     start = time.time()
     with torch.no_grad():
         predictions = model([img_tensor])
     inference_time = time.time() - start
     pred = predictions[0]
     mask = pred['scores'] >= conf_threshold
+    
+    boxes = pred['boxes'][mask].cpu().numpy()
+    
+    # Scale boxes back if we resized
+    if max(h, w) > max_dim:
+        boxes = boxes / scale
+        
     return {
-        'boxes': pred['boxes'][mask].cpu().numpy(),
+        'boxes': boxes,
         'labels': pred['labels'][mask].cpu().numpy(),
         'scores': pred['scores'][mask].cpu().numpy(),
         'inference_time': inference_time
