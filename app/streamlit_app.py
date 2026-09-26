@@ -39,25 +39,25 @@ st.set_page_config(
 INDIC_CSS = """
 <style>
 /* ─────── Imports & Base ─────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap');
 
 :root {
-    /* Premium SaaS Light Theme */
-    --bg-main: #F8FAFC; /* Very light cool gray */
+    /* Indic Heritage Premium Theme */
+    --bg-main: #FBF8F1; /* Warm Ivory */
     --bg-card: #FFFFFF;
-    --text-main: #0F172A;
-    --text-muted: #64748B;
-    --primary: #2563EB;
-    --primary-light: #3B82F6;
-    --accent: #F59E0B;
-    --border: #E2E8F0;
-    --radius-sm: 8px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
-    --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
-    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --text-main: #1E2A5A; /* Deep Indigo */
+    --text-muted: #5A6B8A;
+    --primary: #1E2A5A;
+    --accent: #C89B3C; /* Antique Gold */
+    --accent-hover: #DFB768;
+    --border: rgba(30, 42, 90, 0.12);
+    --terracotta: #8B4A3A;
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --shadow-sm: 0 4px 15px rgba(30, 42, 90, 0.04);
+    --shadow-md: 0 8px 25px rgba(30, 42, 90, 0.08);
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Global overides */
@@ -66,8 +66,7 @@ INDIC_CSS = """
     font-family: 'Inter', sans-serif !important;
     color: var(--text-main);
 }
-
-/* Hide default stHeader, Deploy button, and MainMenu to make it look cleaner */
+/* Hide default stHeader to make it look cleaner */
 header[data-testid="stHeader"] {
     display: none !important;
 }
@@ -81,37 +80,49 @@ footer {
     display: none !important;
 }
 
-
 /* ─────── Header & Hero ─────── */
 .hero-container {
     text-align: center;
     padding: 3rem 1rem 2rem 1rem;
     margin-bottom: 2rem;
-    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(255,255,255,0.8);
 }
 .hero-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 3.2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.4rem;
     font-weight: 800;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.2rem;
-    color: var(--text-main);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.3rem;
+    color: var(--primary);
 }
 .hero-title span {
-    background: linear-gradient(135deg, var(--primary) 0%, #8B5CF6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--accent);
 }
 .hero-subtitle {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
     font-weight: 400;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
+    max-width: 600px;
+    margin: 0 auto;
 }
 .hero-divider {
-    display: none; /* Removed for a cleaner look */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 0 2rem 0;
+}
+.hero-divider::before, .hero-divider::after {
+    content: "";
+    height: 1px;
+    width: 60px;
+    background-color: var(--accent);
+    opacity: 0.5;
+}
+.hero-divider-icon {
+    color: var(--accent);
+    font-size: 0.8rem;
+    opacity: 0.9;
 }
 
 /* ─────── Metric Cards ─────── */
@@ -122,36 +133,24 @@ footer {
     padding: 1.5rem;
     text-align: center;
     box-shadow: var(--shadow-sm);
-    transition: all var(--transition);
+    transition: transform var(--transition), box-shadow var(--transition);
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
     overflow: hidden;
-}
-.metric-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), #8B5CF6);
-    opacity: 0;
-    transition: opacity var(--transition);
+    border-top: 3px solid var(--accent);
 }
 .metric-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: rgba(37, 99, 235, 0.2);
-}
-.metric-card:hover::before {
-    opacity: 1;
+    box-shadow: var(--shadow-md);
 }
 .metric-value {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--text-main);
+    font-weight: 700;
+    color: var(--primary);
     line-height: 1.1;
     margin-bottom: 0.25rem;
 }
@@ -160,26 +159,19 @@ footer {
     font-weight: 600;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
 }
 
 /* ─────── Section Titles ─────── */
 .section-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 1.4rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--primary);
     margin: 2rem 0 1.25rem 0;
-    letter-spacing: -0.01em;
-    display: flex;
-    align-items: center;
-}
-.section-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-    margin-left: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    display: inline-block;
 }
 
 /* ─────── Custom HTML Tables ─────── */
@@ -196,15 +188,14 @@ footer {
     border: 1px solid var(--border);
 }
 .custom-table th {
-    background: #F8FAFC;
-    color: var(--text-muted);
+    background: var(--primary);
+    color: #FFFFFF;
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.75rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     padding: 14px 16px;
     text-align: left;
-    border-bottom: 1px solid var(--border);
 }
 .custom-table td {
     padding: 14px 16px;
@@ -216,7 +207,7 @@ footer {
     border-bottom: none;
 }
 .custom-table tbody tr:hover {
-    background-color: #F8FAFC;
+    background-color: rgba(200, 155, 60, 0.04);
 }
 
 /* ─────── Empty States ─────── */
@@ -224,36 +215,30 @@ footer {
     text-align: center;
     padding: 5rem 2rem;
     background: var(--bg-card);
-    border: 1.5px dashed var(--border);
+    border: 1.5px dashed var(--accent);
     border-radius: var(--radius-md);
     color: var(--text-muted);
     transition: all var(--transition);
 }
 .empty-state:hover {
-    border-color: var(--primary-light);
-    background: #EFF6FF;
+    background: rgba(200, 155, 60, 0.03);
 }
 .empty-icon {
     font-size: 3.5rem;
     margin-bottom: 1rem;
-    opacity: 0.7;
-    filter: grayscale(100%);
-    transition: filter var(--transition);
-}
-.empty-state:hover .empty-icon {
-    filter: grayscale(0%);
+    opacity: 0.8;
 }
 .empty-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-main);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary);
     margin-bottom: 0.5rem;
 }
 .empty-subtitle {
     font-size: 0.95rem;
     line-height: 1.5;
-    max-width: 400px;
+    max-width: 450px;
     margin: 0 auto;
 }
 
@@ -271,33 +256,39 @@ footer {
     box-shadow: var(--shadow-md);
 }
 .about-card h4 {
-    font-family: 'Outfit', sans-serif;
-    font-size: 1.1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--primary);
     margin-top: 0;
     border-bottom: 1px solid var(--border);
     padding-bottom: 0.75rem;
     margin-bottom: 1.25rem;
 }
+.about-card p, .about-card li {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
 
 /* ─────── Demo Banner ─────── */
 .demo-banner {
-    background: #FEF2F2;
-    color: #991B1B;
-    border: 1px solid #FCA5A5;
-    padding: 14px;
+    background: rgba(139, 74, 58, 0.08);
+    color: var(--terracotta);
+    border: 1px solid rgba(139, 74, 58, 0.2);
+    border-left: 4px solid var(--terracotta);
+    padding: 14px 18px;
     border-radius: var(--radius-sm);
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
-    text-align: center;
+    display: flex;
+    align-items: center;
     font-weight: 500;
 }
 
 /* ─────── Sidebar Customization ─────── */
 [data-testid="stSidebar"] {
-    background-color: #0F172A !important;
-    border-right: 1px solid #1E293B !important;
+    background-color: var(--primary) !important;
+    border-right: 1px solid rgba(200,155,60,0.2) !important;
 }
 [data-testid="stSidebar"] * {
     color: #F8FAFC !important;
@@ -309,22 +300,32 @@ footer {
     font-size: 0.75rem !important;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #94A3B8 !important;
+    color: var(--accent) !important;
 }
 .sidebar-footer {
     text-align: center;
     font-size: 0.75rem;
-    color: #64748B;
+    color: rgba(255,255,255,0.6);
     padding: 1.5rem 0;
-    border-top: 1px solid #1E293B;
+    border-top: 1px solid rgba(200,155,60,0.2);
     margin-top: 2rem;
+}
+.lang-badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 0.75rem;
+    color: #FBF8F1;
+    display: inline-block;
+    margin: 3px;
 }
 
 /* ─────── Footer ─────── */
 .app-footer {
     text-align: center;
     padding: 3rem 1rem;
-    margin-top: 3rem;
+    margin-top: 4rem;
     color: var(--text-muted);
     font-size: 0.85rem;
     border-top: 1px solid var(--border);
@@ -336,18 +337,20 @@ footer {
     background-color: transparent;
 }
 .stTabs [data-baseweb="tab"] {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 1.05rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    color: #64748B !important;
+    color: var(--text-muted) !important;
 }
 .stTabs [aria-selected="true"] {
     color: var(--primary) !important;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
 }
 .stTabs [data-baseweb="tab-highlight"] {
-    background-color: var(--primary);
+    background-color: var(--accent);
 }
 
 /* ─────── Responsive ─────── */
@@ -355,7 +358,6 @@ footer {
     .hero-title { font-size: 2.5rem; }
     .hero-subtitle { font-size: 0.95rem; }
     .metric-value { font-size: 1.8rem; }
-    .section-title::after { display: none; }
 }
 </style>
 """
@@ -557,11 +559,8 @@ with st.sidebar:
     st.markdown('<p style="font-size:0.72rem; color:rgba(200,155,60,0.7); font-weight:600; letter-spacing:0.08em;">LANGUAGES</p>', unsafe_allow_html=True)
     languages = ["Assamese", "Bengali", "English", "Gujarati", "Hindi", "Kannada",
                  "Malayalam", "Marathi", "Odia", "Punjabi", "Tamil", "Telugu"]
-    badge_html = "<div style='display: flex; flex-wrap: wrap; gap: 6px;'>" + "".join(
-        f'<span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; padding: 2px 8px; font-size: 0.75rem; color: #F8FAFC;">{l}</span>' 
-        for l in languages
-    ) + "</div>"
-    st.markdown(badge_html, unsafe_allow_html=True)
+    badge_html = "".join(f'<span class="lang-badge">{l}</span>' for l in languages)
+    st.markdown(f'<div style="display:flex; flex-wrap:wrap;">{badge_html}</div>', unsafe_allow_html=True)
 
     st.markdown("""
     <div class="sidebar-footer">
@@ -577,9 +576,9 @@ with st.sidebar:
 # ══════════════════════════════════════════════════════════════
 st.markdown("""
 <div style="text-align:center; padding:0.8rem 0 0.3rem;">
-    <div class="hero-title">Indic<span class="gold">Doc</span> AI</div>
+    <div class="hero-title">Indic<span>Doc</span> AI</div>
     <div class="hero-subtitle">Understand Indian Documents. Digitally.</div>
-    <div class="indic-divider">&loz; &loz; &loz;</div>
+    <div class="hero-divider"><span class="hero-divider-icon">&loz; &loz; &loz;</span></div>
 </div>
 """, unsafe_allow_html=True)
 
