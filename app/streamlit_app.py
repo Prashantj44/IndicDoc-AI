@@ -557,7 +557,10 @@ with st.sidebar:
     st.markdown('<p style="font-size:0.72rem; color:rgba(200,155,60,0.7); font-weight:600; letter-spacing:0.08em;">LANGUAGES</p>', unsafe_allow_html=True)
     languages = ["Assamese", "Bengali", "English", "Gujarati", "Hindi", "Kannada",
                  "Malayalam", "Marathi", "Odia", "Punjabi", "Tamil", "Telugu"]
-    badge_html = "".join(f'<span class="lang-badge">{l}</span>' for l in languages)
+    badge_html = "<div style='display: flex; flex-wrap: wrap; gap: 6px;'>" + "".join(
+        f'<span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; padding: 2px 8px; font-size: 0.75rem; color: #F8FAFC;">{l}</span>' 
+        for l in languages
+    ) + "</div>"
     st.markdown(badge_html, unsafe_allow_html=True)
 
     st.markdown("""
