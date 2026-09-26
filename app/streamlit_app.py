@@ -66,6 +66,11 @@ INDIC_CSS = """
     font-family: 'Inter', sans-serif !important;
     color: var(--text-main);
 }
+.block-container {
+    max-width: 1440px !important;
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
+}
 /* Hide default stHeader to make it look cleaner */
 header[data-testid="stHeader"] {
     display: none !important;
@@ -407,13 +412,25 @@ def draw_detections(image, boxes, labels, scores, class_names, conf_threshold=0.
         x1, y1, x2, y2 = [int(c) for c in box[:4]]
         x1, y1 = max(0, x1), max(0, y1)
         x2, y2 = min(w, x2), min(h, y2)
-        thick = max(2, min(h, w) // 350)
+        thick = max(2, int(min(h, w) / 350))
         cv2.rectangle(img, (x1, y1), (x2, y2), color, thick)
         text = f"{name}: {score:.2f}"
-        fs = max(0.38, min(h, w) / 1600)
-        (tw, th_t), bl = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX, fs, 1)
-        cv2.rectangle(img, (x1, y1 - th_t - bl - 6), (x1 + tw + 4, y1), color, -1)
-        cv2.putText(img, text, (x1 + 2, y1 - bl - 3), cv2.FONT_HERSHEY_SIMPLEX, fs, (255,255,255), 1, cv2.LINE_AA)
+        fs = max(0.6, min(h, w) / 1200.0)
+        t_thick = max(1, int(fs * 1.5))
+        (tw, th_t), bl = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX, fs, t_thick)
+        
+        # If the label goes above the image, move it inside the box
+        if y1 - th_t - bl - 6 < 0:
+            y_rect_top = y1
+            y_rect_bot = y1 + th_t + bl + 6
+            y_text = y1 + th_t + 3
+        else:
+            y_rect_top = y1 - th_t - bl - 6
+            y_rect_bot = y1
+            y_text = y1 - bl - 3
+            
+        cv2.rectangle(img, (x1, y_rect_top), (x1 + tw + 4, y_rect_bot), color, -1)
+        cv2.putText(img, text, (x1 + 2, int(y_text)), cv2.FONT_HERSHEY_SIMPLEX, fs, (255,255,255), t_thick, cv2.LINE_AA)
     return img
 
 
@@ -680,7 +697,7 @@ with tab_dash:
 #  TAB 2: ANALYZE
 # ══════════════════════════════════════════════════════════════
 with tab_analyze:
-    col_left, col_right = st.columns([1, 2.8])
+    col_left, col_right = st.columns([1, 2])
 
     with col_left:
         st.markdown('<div class="section-title">Upload & Analyze</div>', unsafe_allow_html=True)
