@@ -659,9 +659,9 @@ with tab_analyze:
     with col_upload:
         st.markdown('<div class="section-title">Upload</div>', unsafe_allow_html=True)
         uploaded_file = st.file_uploader(
-            "Choose a document image",
-            type=["png", "jpg", "jpeg", "tiff", "bmp"],
-            help="Upload a scanned document image for layout analysis"
+            "Choose a document image or PDF",
+            type=["png", "jpg", "jpeg", "tiff", "bmp", "pdf"],
+            help="Upload a document image or PDF for layout analysis"
         )
 
         sample_dir = PROJECT_ROOT / "data" / "processed" / "sample" / "images"
@@ -675,11 +675,30 @@ with tab_analyze:
 
         if uploaded_file is not None:
             if isinstance(uploaded_file, Path):
-                image = cv2.imread(str(uploaded_file))
+                file_ext = uploaded_file.suffix.lower()
+                if file_ext == '.pdf':
+                    import fitz
+                    doc = fitz.open(str(uploaded_file))
+                    pix = doc[0].get_pixmap()
+                    img_data = pix.tobytes("png")
+                    file_bytes = np.frombuffer(img_data, np.uint8)
+                    image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+                else:
+                    image = cv2.imread(str(uploaded_file))
                 image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             else:
-                file_bytes = np.frombuffer(uploaded_file.read(), np.uint8)
-                image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+                file_ext = Path(uploaded_file.name).suffix.lower()
+                file_data = uploaded_file.read()
+                if file_ext == '.pdf':
+                    import fitz
+                    doc = fitz.open(stream=file_data, filetype="pdf")
+                    pix = doc[0].get_pixmap()
+                    img_data = pix.tobytes("png")
+                    file_bytes = np.frombuffer(img_data, np.uint8)
+                    image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+                else:
+                    file_bytes = np.frombuffer(file_data, np.uint8)
+                    image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
                 image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
             h, w = image.shape[:2]
